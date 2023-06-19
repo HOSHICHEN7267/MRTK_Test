@@ -653,11 +653,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template_3D
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: C:\Users\anton\Desktop\Antony\Seminar\GazeExample\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 8094f6cf7cc1da01
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 
@@ -676,8 +676,8 @@ PlayerSettings:
     WindowsStoreApps:
       GazeInput: True
       PrivateNetworkClientServer: True
-      SpatialPerception: True
       InternetClientServer: True
+      SpatialPerception: True
       InternetClient: True
       WebCam: True
       Microphone: True
