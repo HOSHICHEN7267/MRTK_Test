@@ -17,15 +17,18 @@ public class SerialReceiver : MonoBehaviour {
   private SerialManager serialmanager;
   private int data;
   private int prev;
+  private bool isOpen;
 
   public event EventHandler OnButtonClicked;
   public event EventHandler OnButtonHovered;
+  public event EventHandler OnButtonUnhoverd;
 
   private void Awake () {
     serialmanager = GetComponent<SerialManager>();
 
     data = 0;
     prev = 0;
+    isOpen = false;
   }
 
   void Update() {
@@ -62,8 +65,14 @@ public class SerialReceiver : MonoBehaviour {
       if (OnButtonClicked != null) OnButtonClicked(this, EventArgs.Empty);
     }
 
-    if (data >= 1) {
+    if (data >= 1 && !isOpen) {
       if (OnButtonHovered != null) OnButtonHovered(this, EventArgs.Empty);
+
+      isOpen = true;
+    } else if (data == 0 && isOpen) {
+      if (OnButtonUnhoverd != null) OnButtonUnhoverd(this, EventArgs.Empty);
+
+      isOpen = false;
     }
   }
 }

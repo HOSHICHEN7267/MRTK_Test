@@ -14,7 +14,14 @@ public class KeyBoardField : MonoBehaviour, IPointerDownHandler {
   /// </summary>
   [SerializeField] private NonNativeKeyboard keyboard = null;
   [SerializeField] private SerialReceiver serialReceiver = null;
+  
+  void Start() {
+    // TO OPEN
+    // serialReceiver.OnButtonHovered += EnableKeyboard;
+    // serialReceiver.OnButtonUnhoverd += DisableKeyboard;
+  }
 
+  // REPLACE
   public void OnPointerDown(PointerEventData eventData) {
     keyboard.PresentKeyboard();
 
@@ -25,6 +32,14 @@ public class KeyBoardField : MonoBehaviour, IPointerDownHandler {
 
   private void UpdateText(string text) {
     GetComponent<TMP_InputField>().text = text;
+  }
+  
+  private void EnableKeyboard(object sender, EventArgs e) {
+    keyboard.PresentKeyboard();
+
+    keyboard.OnClosed += DisableKeyboard;
+    keyboard.OnTextSubmitted += DisableKeyboard;
+    keyboard.OnTextUpdated += UpdateText;
   }
 
   private void DisableKeyboard(object sender, EventArgs e) {
