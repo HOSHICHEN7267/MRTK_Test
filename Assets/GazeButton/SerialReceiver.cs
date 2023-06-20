@@ -15,27 +15,36 @@ public class SerialReceiver : MonoBehaviour {
   public int DisplayType; // 以ASCII碼或character展示             
 
   private SerialManager serialmanager;
-  public int data;
+  private int data;
+  private int prev;
+
+  public event EventHandler OnButtonClicked;
+  public event EventHandler OnButtonHovered;
 
   private void Awake () {
     serialmanager = GetComponent<SerialManager>();
+
+    data = 0;
+    prev = 0;
   }
 
   void Update() {
     serialReceive();
+
+    CheckButtonStatus();
   }
 
   private void serialReceive() {
     try {
       readOneByteAtATime(); // 一次只讀one byte         
     } 
-    catch {
-    }
+    catch {}
   }
 
-  private void readOneByteAtATime() { // 一次讀one byte      
-    data = serialmanager.serialPort.ReadByte();                             
-    displayStyle(DisplayType, data);
+  private void readOneByteAtATime() { // 一次讀one byte
+    prev = data;
+    data = serialmanager.serialPort.ReadByte();                       
+    // displayStyle(DisplayType, data);
   }
 
   private void displayStyle(int displayType, int data) {
@@ -45,6 +54,16 @@ public class SerialReceiver : MonoBehaviour {
     else if (displayType == 1) { // display character
       char c = Convert.ToChar(data);                        
       Debug.Log(c);    
+    }
+  }
+
+  private void CheckButtonStatus() {
+    if (prev == 2 && data >= 1) {
+      if (OnButtonClicked != null) OnButtonClicked(this, EventArgs.Empty);
+    }
+
+    if (data >= 1) {
+      if (OnButtonHovered != null) OnButtonHovered(this, EventArgs.Empty);
     }
   }
 }
