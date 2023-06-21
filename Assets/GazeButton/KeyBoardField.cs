@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using Microsoft.MixedReality.Toolkit.Experimental.UI;
 
 [RequireComponent(typeof(TMP_InputField))]
-public class KeyBoardField : MonoBehaviour, IPointerDownHandler {
+public class KeyBoardField : MonoBehaviour {
   /// <summary>
   /// This component links the NonNativeKeyboard to a TMP_InputField
   /// Put it on the TMP_InputField and assign the NonNativeKeyboard.prefab
@@ -17,18 +17,18 @@ public class KeyBoardField : MonoBehaviour, IPointerDownHandler {
   
   void Start() {
     // TO OPEN
-    // serialReceiver.OnButtonHovered += EnableKeyboard;
-    // serialReceiver.OnButtonUnhoverd += DisableKeyboard;
+    serialReceiver.OnButtonHovered += EnableKeyboard;
+    serialReceiver.OnButtonUnhovered += DisableKeyboard;
   }
 
   // REPLACE
-  public void OnPointerDown(PointerEventData eventData) {
-    keyboard.PresentKeyboard();
+  // public void OnPointerDown(PointerEventData eventData) {
+  //   keyboard.PresentKeyboard();
 
-    keyboard.OnClosed += DisableKeyboard;
-    keyboard.OnTextSubmitted += DisableKeyboard;
-    keyboard.OnTextUpdated += UpdateText;
-  }
+  //   keyboard.OnClosed += DisableKeyboard;
+  //   keyboard.OnTextSubmitted += DisableKeyboard;
+  //   keyboard.OnTextUpdated += UpdateText;
+  // }
 
   private void UpdateText(string text) {
     GetComponent<TMP_InputField>().text = text;

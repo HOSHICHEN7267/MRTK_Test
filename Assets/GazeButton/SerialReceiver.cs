@@ -6,6 +6,9 @@ Unity read + Arduino send example
 */
 using System;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit;
+using UnityEngine.UI;
+
 
 public class SerialReceiver : MonoBehaviour {
   [SpaceAttribute(10)]
@@ -21,7 +24,7 @@ public class SerialReceiver : MonoBehaviour {
 
   public event EventHandler OnButtonClicked;
   public event EventHandler OnButtonHovered;
-  public event EventHandler OnButtonUnhoverd;
+  public event EventHandler OnButtonUnhovered;
 
   private void Awake () {
     serialmanager = GetComponent<SerialManager>();
@@ -33,8 +36,8 @@ public class SerialReceiver : MonoBehaviour {
 
   void Update() {
     serialReceive();
-
     CheckButtonStatus();
+    LogCurrentGazeTarget();
   }
 
   private void serialReceive() {
@@ -61,8 +64,9 @@ public class SerialReceiver : MonoBehaviour {
   }
 
   private void CheckButtonStatus() {
-    if (prev == 2 && data >= 1) {
-      if (OnButtonClicked != null) OnButtonClicked(this, EventArgs.Empty);
+    if (prev == 2 && data <= 1) {
+      CoreServices.InputSystem.GazeProvider.GazeTarget.transform.parent.GetComponent<Button>().onClick.Invoke();
+      // if (OnButtonClicked != null) OnButtonClicked(this, EventArgs.Empty);
     }
 
     if (data >= 1 && !isOpen) {
@@ -70,9 +74,17 @@ public class SerialReceiver : MonoBehaviour {
 
       isOpen = true;
     } else if (data == 0 && isOpen) {
-      if (OnButtonUnhoverd != null) OnButtonUnhoverd(this, EventArgs.Empty);
+      if (OnButtonUnhovered != null) OnButtonUnhovered(this, EventArgs.Empty);
 
       isOpen = false;
+    }
+  }
+
+  void LogCurrentGazeTarget() {
+    if (CoreServices.InputSystem.GazeProvider.GazeTarget)
+    {
+      Debug.Log("User gaze is currently over game object: " + CoreServices.InputSystem.GazeProvider.GazeTarget);
+      // CoreServices.InputSystem.GazeProvider.GazeTarget.transform.parent.GetComponent<Button>().onClick.Invoke();
     }
   }
 }
