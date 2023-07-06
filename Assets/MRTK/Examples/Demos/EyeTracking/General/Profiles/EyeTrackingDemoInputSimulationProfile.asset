@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EyeTrackingDemoInputSimulationProfile
   m_EditorClassIdentifier: 
   isCustomProfile: 1
-  indicatorsPrefab: {fileID: 0}
+  indicatorsPrefab: {fileID: 1000012072213228, guid: 521049f9431e342478200d59fce43f92, type: 3}
   mouseRotationSensitivity: 0.1
   mouseX: Mouse X
   mouseY: Mouse Y
@@ -42,7 +42,7 @@ MonoBehaviour:
   moveUpDown: UpDown
   lookHorizontal: AXIS_4
   lookVertical: AXIS_5
-  defaultEyeGazeSimulationMode: 0
+  defaultEyeGazeSimulationMode: 2
   defaultControllerSimulationMode: 2
   toggleLeftControllerKey:
     bindingType: 2
