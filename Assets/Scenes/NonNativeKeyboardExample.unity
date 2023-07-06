@@ -653,6 +653,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4161554491808334148, guid: 455fe3010c77e724795b80bf67b250eb, type: 3}
   m_PrefabInstance: {fileID: 1167506183}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &897375463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4161554491785710234, guid: 455fe3010c77e724795b80bf67b250eb, type: 3}
+  m_PrefabInstance: {fileID: 1167506183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87b4a5817577d54fa5c9451215f893b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1098341096
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +752,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4161554491785710234, guid: 455fe3010c77e724795b80bf67b250eb, type: 3}
+      propertyPath: InputField
+      value: 
+      objectReference: {fileID: 1816319500}
     - target: {fileID: 4161554491797031600, guid: 455fe3010c77e724795b80bf67b250eb, type: 3}
       propertyPath: m_Name
       value: KeyboardWithoutField
@@ -1303,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc320711f5c17c14e8c067b3d4ac0b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyboard: {fileID: 0}
+  keyboard: {fileID: 897375463}
   serialReceiver: {fileID: 1474309423}
 --- !u!1 &2063343289
 GameObject:

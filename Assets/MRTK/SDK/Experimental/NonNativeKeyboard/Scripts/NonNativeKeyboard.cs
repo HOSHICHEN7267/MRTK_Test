@@ -88,7 +88,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         /// <summary>
         /// Move the axis slider based on the camera forward and the keyboard plane projection.
         /// </summary>
-        public AxisSlider InputFieldSlide = null;
+        // public AxisSlider InputFieldSlide = null;
 
         /// <summary>
         /// Bool for toggling the slider being enabled.
@@ -315,13 +315,13 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         /// </summary>
         private void LateUpdate()
         {
-            // Axis Slider
-            if (SliderEnabled)
-            {
-                Vector3 nearPoint = Vector3.ProjectOnPlane(CameraCache.Main.transform.forward, transform.forward);
-                Vector3 relPos = transform.InverseTransformPoint(nearPoint);
-                InputFieldSlide.TargetPoint = relPos;
-            }
+            // // Axis Slider
+            // if (SliderEnabled)
+            // {
+            //     Vector3 nearPoint = Vector3.ProjectOnPlane(CameraCache.Main.transform.forward, transform.forward);
+            //     Vector3 relPos = transform.InverseTransformPoint(nearPoint);
+            //     InputFieldSlide.TargetPoint = relPos;
+            // }
 
             CheckForCloseOnInactivityTimeExpired();
         }
