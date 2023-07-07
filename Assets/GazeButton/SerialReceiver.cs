@@ -83,7 +83,7 @@ public class SerialReceiver : MonoBehaviour {
   void LogCurrentGazeTarget() {
     if (CoreServices.InputSystem.GazeProvider.GazeTarget)
     {
-      Debug.Log("User gaze is currently over game object: " + CoreServices.InputSystem.GazeProvider.GazeTarget);
+      // Debug.Log("User gaze is currently over game object: " + CoreServices.InputSystem.GazeProvider.GazeTarget);
       // CoreServices.InputSystem.GazeProvider.GazeTarget.transform.parent.GetComponent<Button>().onClick.Invoke();
     }
   }
