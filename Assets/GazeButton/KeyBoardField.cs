@@ -16,6 +16,7 @@ public class KeyBoardField : MonoBehaviour, IPointerDownHandler {
   [SerializeField] private SerialReceiver serialReceiver = null;
   
   void Start() {
+    
     // TO OPEN
     // serialReceiver.OnButtonHovered += EnableKeyboard;
     // serialReceiver.OnButtonUnhovered += DisableKeyboard;

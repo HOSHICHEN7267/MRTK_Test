@@ -33,25 +33,25 @@ public class AutoComplete : MonoBehaviour
             root = new TrieNode('\0'); // 使用 null 字元作為根節點的值
         }
 
-        public void Insert(string word)
-        {
-            TrieNode current = root;
-            foreach (char c in word)
-            {
-                if (!current.Children.ContainsKey(c))
-                {
-                    current.Children[c] = new TrieNode(c);
-                }
-                current = current.Children[c];
-            }
-            current.IsEndOfWord = true;
-        }
+        // public void Insert(string word)
+        // {
+        //     TrieNode current = root;
+        //     foreach (char c in word)
+        //     {
+        //         if (!current.Children.ContainsKey(c))
+        //         {
+        //             current.Children[c] = new TrieNode(c);
+        //         }
+        //         current = current.Children[c];
+        //     }
+        //     current.IsEndOfWord = true;
+        // }
 
-        public bool Search(string word)
-        {
-            TrieNode node = StartsWith(word);
-            return node != null && node.IsEndOfWord;
-        }
+        // public bool Search(string word)
+        // {
+        //     TrieNode node = StartsWith(word);
+        //     return node != null && node.IsEndOfWord;
+        // }
 
         public TrieNode StartsWith(string prefix)
         {
@@ -103,13 +103,13 @@ public class AutoComplete : MonoBehaviour
             return JsonConvert.SerializeObject(root, Formatting.Indented);
         }
 
-        // public static Trie FromJson(string json)
-        // {
-        //     TrieNode root = JsonConvert.DeserializeObject<TrieNode>(json);
-        //     Trie trie = new Trie();
-        //     trie.root = root;
-        //     return trie;
-        // }
+        public static Trie FromJson(string json)
+        {
+            TrieNode root = JsonConvert.DeserializeObject<TrieNode>(json);
+            Trie trie = new Trie();
+            trie.root = root;
+            return trie;
+        }
     }
 
 
@@ -118,10 +118,9 @@ public class AutoComplete : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trie = JsonUtility.FromJson<Trie>(lexiconJson.text);
+        trie = Trie.FromJson(lexiconJson.text);
         // string jsonText = System.IO.File.ReadAllText("lexicon.json");
         // trie = Trie.FromJson(jsonText);
-        Debug.Log("lexicon has been loaded");
     }
 
     // Update is called once per frame
@@ -130,7 +129,7 @@ public class AutoComplete : MonoBehaviour
         
     }
 
-    void StartAutoComplete(string input)
+    public void StartAutoComplete(string input)
     {
         List<string> suggestions = trie.FindWords(input);
 
@@ -141,10 +140,21 @@ public class AutoComplete : MonoBehaviour
         else
         {
             Debug.Log(input + "建議詞彙：");
-            foreach (string suggestion in suggestions)
-            {
-                Debug.Log(suggestion);
+            if (suggestions.Count < 5){
+                foreach (string suggestion in suggestions)
+                {
+                    Debug.Log(suggestion);
+                }
             }
+            else {
+                for (int i = 0; i < 5; i++){
+                    Debug.Log(i + ". " + suggestions[i]);
+                }
+            }
+            // foreach (string suggestion in suggestions)
+            // {
+            //     Debug.Log(suggestion);
+            // }
         }
     }
 }
